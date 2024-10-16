@@ -21,15 +21,21 @@ export class UserEffects {
     )
   );
 
-    createUser$ = createEffect(() =>
-      this.actions$.pipe(
-        ofType(UserActions.createUser),
-        mergeMap(({ user }) =>
-          this.userService.createUser(user).pipe(
-            map((newUser) => UserActions.createUserSuccess({ user: newUser })),
-            catchError((error) => of(UserActions.createUserFailure({ error })))
-          )
+  createUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.createUser),
+      mergeMap(({ user }) =>
+        this.userService.createUser(user).pipe(
+          map((newUser) => UserActions.createUserSuccess({ user: newUser })),
+          catchError((error) => {
+            const errorMessage =
+              error.error?.message ||
+              'An error occurred while creating the user.';
+
+            return of(UserActions.createUserFailure({ error: errorMessage }));
+          })
         )
       )
-    );
+    )
+  );
 }

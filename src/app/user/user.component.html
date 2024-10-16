@@ -1,8 +1,17 @@
 <div class="user-container">
   <h2>Manage Users</h2>
 
-  <form class="user-form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
-    <label for="name">Name:<span style="color:red;">*</span></label>
+  <div *ngIf="error$ | async as error" style="color: red">
+    Error: {{ error }}
+  </div>
+
+  <form
+    class="user-form"
+    #userForm="ngForm"
+    (ngSubmit)="onSubmit(userForm)"
+    novalidate
+  >
+    <label for="name">Name:<span style="color: red">*</span></label>
     <input
       type="text"
       id="name"
@@ -11,11 +20,14 @@
       required
       #name="ngModel"
     />
-    <div *ngIf="name.invalid && (name.touched || userForm.submitted)" style="color:red;">
+    <div
+      *ngIf="name.invalid && (name.touched || userForm.submitted)"
+      style="color: red"
+    >
       Name is required
     </div>
 
-    <label for="email">Email:<span style="color:red;">*</span></label>
+    <label for="email">Email:<span style="color: red">*</span></label>
     <input
       type="email"
       id="email"
@@ -25,11 +37,14 @@
       email
       #email="ngModel"
     />
-    <div *ngIf="email.invalid && (email.touched || userForm.submitted)" style="color:red;">
+    <div
+      *ngIf="email.invalid && (email.touched || userForm.submitted)"
+      style="color: red"
+    >
       A valid email is required
     </div>
 
-    <label for="password">Password:<span style="color:red;">*</span></label>
+    <label for="password">Password:<span style="color: red">*</span></label>
     <input
       type="password"
       id="password"
@@ -39,7 +54,10 @@
       minlength="6"
       #password="ngModel"
     />
-    <div *ngIf="password.invalid && (password.touched || userForm.submitted)" style="color:red;">
+    <div
+      *ngIf="password.invalid && (password.touched || userForm.submitted)"
+      style="color: red"
+    >
       Password is required and must be at least 6 characters long
     </div>
 
@@ -52,9 +70,17 @@
         required
         #consentToStoreData="ngModel"
       />
-      <label for="consent">Consent to store data <span style="color:red;">*</span></label>
+      <label for="consent"
+        >Consent to store data <span style="color: red">*</span></label
+      >
     </div>
-    <div *ngIf="consentToStoreData.invalid && (consentToStoreData.touched || userForm.submitted)" style="color:red;">
+    <div
+      *ngIf="
+        consentToStoreData.invalid &&
+        (consentToStoreData.touched || userForm.submitted)
+      "
+      style="color: red"
+    >
       You must consent to store your data
     </div>
 
@@ -67,7 +93,7 @@
 
   <div class="user-list">
     <ul>
-      <li *ngFor="let user of (users$ | async)">
+      <li *ngFor="let user of users$ | async">
         <span>{{ user.name }}</span>
         <small>{{ user.email }}</small>
       </li>

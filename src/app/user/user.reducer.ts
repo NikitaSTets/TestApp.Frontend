@@ -5,7 +5,7 @@ import * as UserActions from './user.actions';
 export interface UserState {
   users: User[];
   loading: boolean;
-  error: any;
+  error: string | null;
 }
 
 const initialState: UserState = {
@@ -29,7 +29,7 @@ export const userReducer = createReducer(
   on(UserActions.loadUsersFailure, (state, { error }) => ({
     ...state,
     loading: false,
-    error: error,
+    error: 'load users issue',
   })),
   on(UserActions.createUserSuccess, (state, { user }) => ({
     ...state,
@@ -37,6 +37,6 @@ export const userReducer = createReducer(
   })),
   on(UserActions.createUserFailure, (state, { error }) => ({
     ...state,
-    error: error,
+    error: 'create user issue',
   }))
 );

@@ -3,7 +3,11 @@ import { Store, StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from './user.model';
 import * as UserActions from './user.actions';
-import { selectAllUsers, selectUserLoading } from './user.selectors';
+import {
+  selectAllUsers,
+  selectUserLoading,
+  selectUserError,
+} from './user.selectors';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgFor, NgIf, CommonModule } from '@angular/common';
 
@@ -17,11 +21,13 @@ import { NgFor, NgIf, CommonModule } from '@angular/common';
 export class UserComponent implements OnInit {
   users$: Observable<User[]>;
   loading$: Observable<boolean>;
+  error$: Observable<string | null>;
   user: User = { name: '', email: '', password: '', consentToStoreData: false };
 
   constructor(private store: Store) {
     this.users$ = this.store.select(selectAllUsers);
     this.loading$ = this.store.select(selectUserLoading);
+    this.error$ = this.store.select(selectUserError);
   }
 
   ngOnInit(): void {
@@ -36,7 +42,7 @@ export class UserComponent implements OnInit {
         email: '',
         password: '',
         consentToStoreData: false,
-      };  
+      };
       form.resetForm();
     }
   }

@@ -25,5 +25,5 @@ export const createUserSuccess = createAction(
 
 export const createUserFailure = createAction(
   '[User] Create User Failure',
-  props<{ error: any }>()
+  props<{ error: string }>()
 );
