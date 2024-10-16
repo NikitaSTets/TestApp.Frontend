@@ -1,0 +1,112 @@
+.user-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.user-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="password"] {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.user-form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.user-form .checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.user-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-form button:hover {
+  background-color: #0056b3;
+}
+
+.user-list {
+  margin-top: 20px;
+}
+
+.user-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-list li span {
+  font-weight: 500;
+}
+
+.user-list li small {
+  color: #888;
+}
+
+input,
+button,
+label {
+  font-family: Arial, sans-serif;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:disabled {
+    background-color: #6c757d !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+  }
